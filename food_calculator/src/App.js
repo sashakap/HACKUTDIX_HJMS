@@ -8,8 +8,10 @@ function App() {
          <div className='categories'>
             <div className ="searchSection">
               <h1>What Are you in the Mood For?</h1>
-              <input type="foodSearch" name="fname"></input>
-              <searchvar></searchvar>
+              <div className='searchbar'>
+                <input type="text" className="foodSearch"></input>
+                <button className='searchButton'></button>
+              </div>
             </div>
           </div>
           <div className="Calculator">
