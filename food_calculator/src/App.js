@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+import { db } from './firebase.js';
+import { collection , onSnapshot } from 'firebase/firestore';
 
 function App() {
   return (
