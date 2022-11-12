@@ -1,22 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
+import { CalculatorLabel } from './Components/CalculatorLabel';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+         <div className='categories'>
+            <div className ="searchSection">
+              <h1>What Are you in the Mood For?</h1>
+              <input type="foodSearch" name="fname"></input>
+              <searchvar></searchvar>
+            </div>
+          </div>
+          <div className="Calculator">
+           <CalculatorLabel/>
+          </div>
       </header>
     </div>
   );
