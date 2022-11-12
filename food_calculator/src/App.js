@@ -1,5 +1,10 @@
 import './App.css';
+<<<<<<< HEAD
 import { CalculatorLabel } from './Components/CalculatorLabel';
+=======
+import { db } from './firebase.js';
+import { collection , onSnapshot } from 'firebase/firestore';
+>>>>>>> c75219332859accea464180f8b0e68e945ba2d09
 
 function App() {
   return (
