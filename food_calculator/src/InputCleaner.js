@@ -3,7 +3,7 @@
 // Database has first letter capitalized, as well as every letter following a space.
 //  All other letters are lowercase
 //  Some characters may not be alphabetic / space (ex: 2% Milk)
-function queryCase(rawQuery){
+function cleanQuery(rawQuery){
     // Notably, character.toUpperCase() of a non-alphabetic value does not change the value.
     safeQuery = rawQuery.trim(); // remove leading and trailing whitespace
     safeQuery = safeQuery.charAt(0).toUpperCase() + safeQuery.substring(1); // First character is always uppercase
