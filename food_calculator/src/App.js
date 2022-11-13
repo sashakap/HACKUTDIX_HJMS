@@ -15,7 +15,7 @@ function App() {
             <div className ="searchSection">
               <h1>What Are you in the Mood For?</h1>
               <input type="foodSearch" name="fname"></input>
-              <searchvar></searchvar>
+              <searchbar></searchbar>
               <ul>{items.map(item => <li>Name: {item.name}, Energy: {item.energy}</li>)}</ul>
             </div>
           </div>
