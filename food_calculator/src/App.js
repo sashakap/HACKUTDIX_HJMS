@@ -17,13 +17,8 @@ function App() {
             <div className ="searchSection">
               <h1>What Are you in the Mood For?</h1>
               <input type="foodSearch" name="fname"></input>
-<<<<<<< HEAD
               <searchbar></searchbar>
               <ul>{items.map(item => <li>Name: {item.name}, Energy: {item.energy}</li>)}</ul>
-=======
-              <searchvar></searchvar>
-              <ul>{items.map(item => <p>Name: {item.name}, Energy: {item.energy}</p>)}</ul>
->>>>>>> 5a24985e1a4a50da947745b4d7f1cd5ae28b99b1
             </div>
           </div>
           <div className="Calculator">
