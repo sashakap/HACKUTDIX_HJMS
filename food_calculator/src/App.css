@@ -14,18 +14,52 @@
 }
 
 h1{
-  color:black;
+  color: white;
 }
 
 .App-header {
-  background-color: white;
+  background-color: #0B0B45;
   min-height: 100vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+  color: white;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+.button {
+  background-color: #0B0B45;
+  border: 2px solid cyan;
+  color: cyan;
+  border-radius: 50%;
+  font-size: 20px;
+  height: 40px;
+  width: 40px;
+}
+
+.button:hover {
+  background-color: cyan;
+  color: #0B0B45;
+}
+
+.export {
+  background-color: #0B0B45;
+  border: 2px solid cyan;
+  color: cyan;
+  border-radius: 12px;
+  font-size: 20px;
+  height: 40px;
+}
+
+.export:hover {
+  background-color: cyan;
+  color: #0B0B45;
+}
+
+.item {
+  background-color: green;
 }

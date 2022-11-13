@@ -85,15 +85,14 @@ function App() {
                 <input value={input} onChange={e=>setInput(e.target.value)} />
               </form>
               <ul>{
-              items.map(item => <p>
-                Name: {item.name}, Energy: {item.energy}, <button onClick={() =>addToCart(item)}>Add to cart</button>
+              items.map(item => <p className="item">
+                Name: {item.name}, Energy: {item.energy}, <button className="button" onClick={() =>addToCart(item)}>+</button>
                 </p>
                 )
               }</ul>
             </div>
           </div>
           <div className="Calculator">
-           
            <div className="Cart">
            <p>
               START CART
@@ -105,11 +104,11 @@ function App() {
             <CalculatorLabel/>
             <ul>{
                 cart.map(cartItem => <p>
-                  Name: {cartItem[0].name}, Energy: {cartItem[0].energy}, Count: {cartItem[1] } <button onClick={() => removeFromCart(cartItem[0])}>Remove from cart</button>
+                  Name: {cartItem[0].name}, Energy: {cartItem[0].energy}, Count: {cartItem[1] } <button className="button" onClick={() => removeFromCart(cartItem[0])}>-</button>
                   </p>
                   )
                 }</ul>
-                <p><button onClick={() => exportCart()}>Export to .txt</button></p>
+                <p><button className="export" onClick={() => exportCart()}>Export Shopping List</button></p>
             </div>
           </div>
       </header>
