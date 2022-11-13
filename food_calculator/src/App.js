@@ -2,7 +2,7 @@ import './App.css';
 import React, {useState, useEffect} from 'react';
 import { CalculatorLabel } from './Components/CalculatorLabel';
 import { db } from './firebase.js';
-import { collection, onSnapshot, query, orderBy, where } from 'firebase/firestore';
+import { collection, onSnapshot, query, orderBy, where, increment } from 'firebase/firestore';
 
 import {cleanQuery} from './InputCleaner';
 import {aggregateList} from './Aggregator';
@@ -16,6 +16,47 @@ function App() {
   const q=query(collection(db,'items'), where('name', '>=', cleanQuery(term)), where('name', '<=', cleanQuery(term) + '~'), orderBy('name'));
   useEffect(() => {onSnapshot(q,(snapshot)=>{setItems(snapshot.docs.map(doc=>doc.data()))})});
 
+  // JAVASCRIPT IS EVIL I SHOULD NOT HAVE TO WRITE THIS FUNCTION BUT IT REFUSES
+  function stringCompare(str1, str2){
+    if(str1.length != str2.length){
+      return false;
+    }
+    for(let x = 0; x < str1.length; x++){
+      if(str1.charCodeAt(x) != str2.charCodeAt(x)){
+        return false
+      }
+    }
+    return true
+  }
+
+  // needed because of how quantity is stored - hackathon moment
+  function findInCart(itemRef){
+    for(let i = 0; i < cart.length; i++){
+      if (stringCompare(cart[i][0].name, itemRef.name)){
+        return i;
+      }
+    }
+    return -1;
+  }
+
+  function addToCart(itemRef){
+    let existingIndex = findInCart(itemRef)
+    if (existingIndex >= 0){
+      cart[existingIndex] = [itemRef, cart[existingIndex][1]+1]
+    } else{
+      cart.push([itemRef, 1])
+    }
+  }
+
+  function removeFromCart(itemRef){
+    let existingIndex = findInCart(itemRef)
+    if (cart[existingIndex][1] > 1){
+      cart[existingIndex] = [itemRef, cart[existingIndex][1]-1]
+    } else{
+      cart.splice(existingIndex, 1)
+    }
+  }
+
   const search=(e)=>{e.preventDefault(); setInput(input); setInput('')};
   return (
     <div className="App">
@@ -28,7 +69,7 @@ function App() {
               </form>
               <ul>{
               items.map(item => <p>
-                Name: {item.name}, Energy: {item.energy}, <button onClick={() =>cart.push(item)}>Add to cart</button>
+                Name: {item.name}, Energy: {item.energy}, <button onClick={() =>addToCart(item)}>Add to cart</button>
                 </p>
                 )
               }</ul>
@@ -37,7 +78,7 @@ function App() {
           <div className="Cart">
           <ul>{
               cart.map(cartItem => <p>
-                Name: {cartItem.name}, Energy: {cartItem.energy}, <button onClick={() => cart.pop(cartItem)}>Remove from cart</button>
+                Name: {cartItem[0].name}, Energy: {cartItem[0].energy}, Count: {cartItem[1] } <button onClick={() => removeFromCart(cartItem[0])}>Remove from cart</button>
                 </p>
                 )
               }</ul>
@@ -46,13 +87,13 @@ function App() {
             <p>
               START SEARCH
               <br></br>
-              {aggregateList(items)[1]}
+              {aggregateList(items, false)[1]}
               <br></br>
               END SEARCH
               <br></br>
               START CART
               <br></br>
-              {aggregateList(cart)[1]}
+              {aggregateList(cart, true)[1]}
               <br></br>
               END CART
             </p>
