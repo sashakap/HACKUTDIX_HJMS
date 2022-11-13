@@ -7,17 +7,19 @@ import { collection, onSnapshot, query, orderBy, where } from 'firebase/firestor
 function App() {
   const [items, setItems] = useState([]);
   const [input, setInput] = useState('');
-  const term = "";
-  const q=query(collection(db,'items'),where('name', '>=', term), where('name', '<=', term + '~'), orderBy('name'));
+  const term = input;
+  const q=query(collection(db,'items'), where('name', '>=', term), where('name', '<=', term + '~'), orderBy('name'));
   useEffect(() => {onSnapshot(q,(snapshot)=>{setItems(snapshot.docs.map(doc=>doc.data()))})});
+  const search=(e)=>{e.preventDefault(); setInput(input); setInput('')};
   return (
     <div className="App">
       <header className="App-header">
          <div className='categories'>
             <div className ="searchSection">
               <h1>What Are you in the Mood For?</h1>
-              <input type="foodSearch" name="fname"></input>
-              <searchvar></searchvar>
+              <form>
+                <input value={input} onChange={e=>setInput(e.target.value)} />
+              </form>
               <ul>{items.map(item => <p>Name: {item.name}, Energy: {item.energy}</p>)}</ul>
             </div>
           </div>
