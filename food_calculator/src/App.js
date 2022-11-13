@@ -58,6 +58,10 @@ function App() {
     }
   }
 
+  function getItemStats(itemRef){
+    return itemRef.protein + "g protein, " + itemRef.carbohydrate + "g carbohydrates, and " + itemRef.fat + "g fat per serving";
+  }
+
   function exportCart(){
     let output = "Shopping list:\n";
     for(let x = 0; x < cart.length; x++){
@@ -103,7 +107,7 @@ function App() {
             </p>
             <CalculatorLabel/>
             <ul>{
-                cart.map(cartItem => <p>
+                cart.map(cartItem => <p title={getItemStats(cartItem[0])}>
                   Name: {cartItem[0].name}, Energy: {cartItem[0].energy}, Count: {cartItem[1] } <button className="button" onClick={() => removeFromCart(cartItem[0])}>-</button>
                   </p>
                   )
