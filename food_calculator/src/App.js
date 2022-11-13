@@ -16,6 +16,7 @@ function App() {
   const q=query(collection(db,'items'), where('name', '>=', cleanQuery(term)), where('name', '<=', cleanQuery(term) + '~'), orderBy('name'));
   useEffect(() => {onSnapshot(q,(snapshot)=>{setItems(snapshot.docs.map(doc=>doc.data()))})});
 
+
   // JAVASCRIPT IS EVIL I SHOULD NOT HAVE TO WRITE THIS FUNCTION BUT IT REFUSES
   function stringCompare(str1, str2){
     if(str1.length != str2.length){
@@ -57,6 +58,22 @@ function App() {
     }
   }
 
+  function exportCart(){
+    let output = "Shopping list:\n";
+    for(let x = 0; x < cart.length; x++){
+      output += "(" + cart[x][1] + ") " + cart[x][0].name + "\n";
+    }
+    
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(output));
+    element.setAttribute('download', "ShoppingList.txt");
+  
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+  }
+
   const search=(e)=>{e.preventDefault(); setInput(input); setInput('')};
   return (
     <div className="App">
@@ -82,6 +99,7 @@ function App() {
                 </p>
                 )
               }</ul>
+              <p><button onClick={() => exportCart()}>Export to .txt</button></p>
           </div>
           <div className="Calculator">
             <p>
