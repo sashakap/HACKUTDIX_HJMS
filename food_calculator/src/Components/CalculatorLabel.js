@@ -8,7 +8,7 @@ export function CalculatorLabel() {
         <h1 className='itemLabel'>Item</h1>
         <h1 className='itemLabel'>Energy</h1>
         <h1 className='itemLabel'>Quantity</h1>
-        <h1 className='itemLabel'>Cost</h1>
+        <h1 className='itemLabel'>Count</h1>
     </div>
   );
 }

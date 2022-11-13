@@ -80,7 +80,7 @@ function App() {
       <header className="App-header">
          <div className='categories'>
             <div className ="searchSection">
-              <h1>What Are you in the Mood For?</h1>
+              <h1>What are you in the mood for?</h1>
               <form>
                 <input value={input} onChange={e=>setInput(e.target.value)} />
               </form>
@@ -92,30 +92,25 @@ function App() {
               }</ul>
             </div>
           </div>
-          <div className="Cart">
-          <ul>{
-              cart.map(cartItem => <p>
-                Name: {cartItem[0].name}, Energy: {cartItem[0].energy}, Count: {cartItem[1] } <button onClick={() => removeFromCart(cartItem[0])}>Remove from cart</button>
-                </p>
-                )
-              }</ul>
-              <p><button onClick={() => exportCart()}>Export to .txt</button></p>
-          </div>
           <div className="Calculator">
-            <p>
-              START SEARCH
-              <br></br>
-              {aggregateList(items, false)[1]}
-              <br></br>
-              END SEARCH
-              <br></br>
+           
+           <div className="Cart">
+           <p>
               START CART
               <br></br>
               {aggregateList(cart, true)[1]}
               <br></br>
               END CART
             </p>
-           <CalculatorLabel/>
+            <CalculatorLabel/>
+            <ul>{
+                cart.map(cartItem => <p>
+                  Name: {cartItem[0].name}, Energy: {cartItem[0].energy}, Count: {cartItem[1] } <button onClick={() => removeFromCart(cartItem[0])}>Remove from cart</button>
+                  </p>
+                  )
+                }</ul>
+                <p><button onClick={() => exportCart()}>Export to .txt</button></p>
+            </div>
           </div>
       </header>
     </div>
