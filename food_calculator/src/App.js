@@ -4,12 +4,14 @@ import { CalculatorLabel } from './Components/CalculatorLabel';
 import { db } from './firebase.js';
 import { collection, onSnapshot, query, orderBy, where } from 'firebase/firestore';
 
+import {cleanQuery} from './InputCleaner';
+
 function App() {
   const [items, setItems] = useState([]);
   const [cart, setCart] = useState([]);
   const [input, setInput] = useState('');
   const term = input;
-  const q=query(collection(db,'items'), where('name', '>=', term), where('name', '<=', term + '~'), orderBy('name'));
+  const q=query(collection(db,'items'), where('name', '>=', cleanQuery(term)), where('name', '<=', cleanQuery(term) + '~'), orderBy('name'));
   useEffect(() => {onSnapshot(q,(snapshot)=>{setItems(snapshot.docs.map(doc=>doc.data()))})});
   const search=(e)=>{e.preventDefault(); setInput(input); setInput('')};
   return (
