@@ -5,6 +5,7 @@ import { db } from './firebase.js';
 import { collection, onSnapshot, query, orderBy, where } from 'firebase/firestore';
 
 import {cleanQuery} from './InputCleaner';
+import {aggregateList} from './Aggregator';
 
 function App() {
   const [items, setItems] = useState([]);
@@ -14,22 +15,6 @@ function App() {
 
   const q=query(collection(db,'items'), where('name', '>=', cleanQuery(term)), where('name', '<=', cleanQuery(term) + '~'), orderBy('name'));
   useEffect(() => {onSnapshot(q,(snapshot)=>{setItems(snapshot.docs.map(doc=>doc.data()))})});
-
-  let itemEnergyAggregate = 0;
-  let itemProteinAggregate = 0;
-  let itemCarbAggregate = 0;
-  let itemFatAggregate = 0;
-  for(let i = 0; i < items.length; i++){
-    // parseInt || 0 indicates to assume 0 if parseInt fails
-    itemEnergyAggregate += parseInt(items[i].energy) || 0;
-    itemProteinAggregate += parseInt(items[i].protein) || 0;
-    itemCarbAggregate += parseInt(items[i].carbohydrate) || 0;
-    itemFatAggregate += parseInt(items[i].fat) || 0;
-  }
-  const itemAggregate = ["Energy: " + itemEnergyAggregate + "kcal", 
-                        "Protein: " + itemProteinAggregate + "g",
-                        "Carbohydrates: " + itemCarbAggregate + "g",
-                        "Fat: " + itemFatAggregate + "g"];
 
   const search=(e)=>{e.preventDefault(); setInput(input); setInput('')};
   return (
@@ -59,13 +44,17 @@ function App() {
           </div>
           <div className="Calculator">
             <p>
-              {itemAggregate[0]}
+              START SEARCH
               <br></br>
-              {itemAggregate[1]}
+              {aggregateList(items)[1]}
               <br></br>
-              {itemAggregate[2]}
+              END SEARCH
               <br></br>
-              {itemAggregate[3]}
+              START CART
+              <br></br>
+              {aggregateList(cart)[1]}
+              <br></br>
+              END CART
             </p>
            <CalculatorLabel/>
           </div>
