@@ -2,14 +2,18 @@ import './App.css';
 import { CalculatorLabel } from './Components/CalculatorLabel';
 import React, {useState, useEffect} from 'react';
 import { db } from './firebase.js';
-import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
+import { collection, onSnapshot, query, orderBy, where } from 'firebase/firestore';
 
 
 
 const q=query(collection(db,'items'),orderBy('name'));
 function App() {
   const [items, setItems] = useState([]);
+  const [input, setInput] = useState('');
+  const term = input;
+  const q=query(collection(db,'items'), where('name', '>=', term), where('name', '<=', term + '~'), orderBy('name'));
   useEffect(() => {onSnapshot(q,(snapshot)=>{setItems(snapshot.docs.map(doc=>doc.data()))})});
+  const search=(e)=>{e.preventDefault(); setInput(input); setInput('')};
   return (
     <div className="App">
       <style>
