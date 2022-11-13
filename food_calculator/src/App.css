@@ -17,12 +17,6 @@ h1{
   color:black;
 }
 
-
-.searchButton{
-  width: 3rem;
-  height: 1.2rem;
-}
-
 .App-header {
   background-color: white;
   min-height: 100vh;
@@ -34,8 +28,4 @@ h1{
 
 .App-link {
   color: #61dafb;
-}
-
-.calculatorLabels{
-  margin-top: 2rem;
 }
