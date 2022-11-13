@@ -2,9 +2,19 @@
   width: 60%;
 }
 
+.selection{
+  height:27rem;
+  overflow-y:scroll;
+}
+
 .calculatorLabels{
   display: flex;
   flex-direction: row;
+}
+
+.cartModifiable{
+  height:22rem;
+  overflow-y:scroll;
 }
 
 .itemLabel{
