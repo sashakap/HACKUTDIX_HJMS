@@ -3,7 +3,7 @@
 }
 
 .selection{
-  height:26rem;
+  height:24.5rem;
   overflow-y:scroll;
 }
 
@@ -191,6 +191,6 @@ h1{
 }
 
 .logo {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
 }
