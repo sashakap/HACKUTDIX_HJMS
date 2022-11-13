@@ -1,14 +1,12 @@
 import './App.css';
-import { CalculatorLabel } from './Components/CalculatorLabel';
 import React, {useState, useEffect} from 'react';
+import { CalculatorLabel } from './Components/CalculatorLabel';
 import { db } from './firebase.js';
 import { collection, onSnapshot, query, orderBy, where } from 'firebase/firestore';
 
-
-
-const q=query(collection(db,'items'),orderBy('name'));
 function App() {
   const [items, setItems] = useState([]);
+  const [cart, setCart] = useState([]);
   const [input, setInput] = useState('');
   const term = input;
   const q=query(collection(db,'items'), where('name', '>=', term), where('name', '<=', term + '~'), orderBy('name'));
@@ -16,18 +14,14 @@ function App() {
   const search=(e)=>{e.preventDefault(); setInput(input); setInput('')};
   return (
     <div className="App">
-      <style>
-        @import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@100&family=Maven+Pro&display=swap');
-      </style>
       <header className="App-header">
          <div className='categories'>
             <div className ="searchSection">
               <h1>What Are you in the Mood For?</h1>
-              <div className='searchbar'>
-                <input type="text" className="foodSearch"></input>
-              </div>
-              <searchbar></searchbar>
-              <ul>{items.map(item => <li>Name: {item.name}, Energy: {item.energy}</li>)}</ul>
+              <form>
+                <input value={input} onChange={e=>setInput(e.target.value)} />
+              </form>
+              <ul>{items.map(item => <p>Name: {item.name}, Energy: {item.energy}</p>)}</ul>
             </div>
           </div>
           <div className="Calculator">
@@ -37,5 +31,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
