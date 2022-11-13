@@ -88,31 +88,33 @@ function App() {
               <form>
                 <input value={input} onChange={e=>setInput(e.target.value)} />
               </form>
-              <ul>{
-              items.map(item => <p className="item">
-                Name: {item.name}, Energy: {item.energy}, <button className="button" onClick={() =>addToCart(item)}>+</button>
-                </p>
-                )
-              }</ul>
+              <div className='selection'>
+                <ul>{
+                items.map(item => <p className="item">
+                  Name: {item.name}, Energy: {item.energy}, <button className="button" onClick={() =>addToCart(item)}>+</button>
+                  </p>
+                  )
+                }</ul>
+              </div>
             </div>
           </div>
           <div className="Calculator">
            <div className="Cart">
            <p>
-              START CART
               <br></br>
               {aggregateList(cart, true)[1]}
               <br></br>
-              END CART
             </p>
+            <p><button className="export" onClick={() => exportCart()}>Export Shopping List</button></p>
             <CalculatorLabel/>
-            <ul>{
-                cart.map(cartItem => <p title={getItemStats(cartItem[0])}>
-                  Name: {cartItem[0].name}, Energy: {cartItem[0].energy}, Count: {cartItem[1] } <button className="button" onClick={() => removeFromCart(cartItem[0])}>-</button>
-                  </p>
-                  )
-                }</ul>
-                <p><button className="export" onClick={() => exportCart()}>Export Shopping List</button></p>
+            <div className='cartModifiable'>
+              <ul>{
+                  cart.map(cartItem => <p>
+                    Name: {cartItem[0].name}, Energy: {cartItem[0].energy}, Count: {cartItem[1] } <button className="button" onClick={() => removeFromCart(cartItem[0])}>-</button>
+                    </p>
+                    )
+                  }</ul>
+              </div>
             </div>
           </div>
       </header>
