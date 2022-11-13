@@ -2,11 +2,13 @@ import './App.css';
 import React, {useState, useEffect} from 'react';
 import { CalculatorLabel } from './Components/CalculatorLabel';
 import { db } from './firebase.js';
-import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
+import { collection, onSnapshot, query, orderBy, where } from 'firebase/firestore';
 
-const q=query(collection(db,'items'),orderBy('name'));
 function App() {
   const [items, setItems] = useState([]);
+  const [input, setInput] = useState('');
+  const term = "";
+  const q=query(collection(db,'items'),where('name', '>=', term), where('name', '<=', term + '~'), orderBy('name'));
   useEffect(() => {onSnapshot(q,(snapshot)=>{setItems(snapshot.docs.map(doc=>doc.data()))})});
   return (
     <div className="App">
@@ -16,7 +18,7 @@ function App() {
               <h1>What Are you in the Mood For?</h1>
               <input type="foodSearch" name="fname"></input>
               <searchvar></searchvar>
-              <ul>{items.map(item => <li>Name: {item.name}, Energy: {item.energy}</li>)}</ul>
+              <ul>{items.map(item => <p>Name: {item.name}, Energy: {item.energy}</p>)}</ul>
             </div>
           </div>
           <div className="Calculator">
