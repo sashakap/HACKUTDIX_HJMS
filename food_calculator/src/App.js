@@ -41,8 +41,21 @@ function App() {
               <form>
                 <input value={input} onChange={e=>setInput(e.target.value)} />
               </form>
-              <ul>{items.map(item => <p>Name: {item.name}, Energy: {item.energy}</p>)}</ul>
+              <ul>{
+              items.map(item => <p>
+                Name: {item.name}, Energy: {item.energy}, <button onClick={() =>cart.push(item)}>Add to cart</button>
+                </p>
+                )
+              }</ul>
             </div>
+          </div>
+          <div className="Cart">
+          <ul>{
+              cart.map(cartItem => <p>
+                Name: {cartItem.name}, Energy: {cartItem.energy}, <button onClick={() => cart.pop(cartItem)}>Remove from cart</button>
+                </p>
+                )
+              }</ul>
           </div>
           <div className="Calculator">
             <p>
