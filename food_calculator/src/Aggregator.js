@@ -5,11 +5,11 @@ export function aggregateList(itemList, isCart){
    for(let i = 0; i < itemList.length; i++){
         // parseInt || 0 indicates to assume 0 if parseInt fails
         if(isCart){
-            aggregated[0] += parseInt(itemList[i][0].energy) || 0;
-            aggregated[1] += parseInt(itemList[i][0].protein) || 0;
-            aggregated[2] += parseInt(itemList[i][0].carbohydrate) || 0;
-            aggregated[3] += parseInt(itemList[i][0].fat) || 0;
-            aggregated[4] += parseInt(itemList[i][0].cost) || 0;   
+            aggregated[0] += parseInt(itemList[i][0].energy) * itemList[i][1] || 0;
+            aggregated[1] += parseInt(itemList[i][0].protein) * itemList[i][1] || 0;
+            aggregated[2] += parseInt(itemList[i][0].carbohydrate) * itemList[i][1] || 0;
+            aggregated[3] += parseInt(itemList[i][0].fat) * itemList[i][1] || 0;
+            aggregated[4] += parseInt(itemList[i][0].cost) * itemList[i][1] || 0;   
         } else{
 
         aggregated[0] += parseInt(itemList[i].energy) || 0;
