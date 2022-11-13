@@ -2,9 +2,19 @@
   width: 60%;
 }
 
+.selection{
+  height:24.5rem;
+  overflow-y:scroll;
+}
+
 .calculatorLabels{
   display: flex;
   flex-direction: row;
+}
+
+.cartModifiable{
+  height:17rem;
+  overflow-y:scroll;
 }
 
 .itemLabel{
@@ -14,18 +24,173 @@
 }
 
 h1{
-  color:black;
+  color: white;
 }
 
 .App-header {
-  background-color: white;
+  background-color: #0B0B45;
   min-height: 100vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+  color: white;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+.button {
+  background-color: #0B0B45;
+  border: 2px solid cyan;
+  color: cyan;
+  border-radius: 50%;
+  font-size: 20px;
+  height: 40px;
+  width: 40px;
+}
+
+.button:hover {
+  background-color: cyan;
+  color: #0B0B45;
+}
+
+.export {
+  background-color: #0B0B45;
+  border: 2px solid cyan;
+  color: cyan;
+  border-radius: 12px;
+  font-size: 20px;
+  height: 40px;
+  justify-content: center;
+}
+
+.export:hover {
+  background-color: cyan;
+  color: #0B0B45;
+}
+
+.item {
+  border: 2px solid cyan;
+  border-radius: 10px;
+  height: 60px;
+  width: 800px;
+  padding: 3px;
+}
+
+.item2 {
+  border: 2px solid cyan;
+  border-radius: 10px;
+  height: 60px;
+  width: 500px;
+  padding: 3px;
+}
+
+.itemText {
+  margin: auto;
+  padding: 12px;
+  font-size: 24px;
+}
+
+.macro {
+  font-size: 12px;
+  margin: auto;
+  padding: 18px;
+  display: inline;
+}
+
+.buttonJustify {
+  display: flex;
+  justify-content: right;
+}
+
+.totals {
+  display: flex;
+  justify-content: center;
+}
+
+.shoppingList {
+  display: flex;
+  justify-content: center;
+  width: 600px;
+}
+
+.categories {
+  display: flex;
+  justify-content: center;
+  width: 900px;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  width: 900px;
+}
+
+.searchbar {
+  display: flex;
+  justify-content: center;
+  width: 600px;
+  height: 30px;
+  border-radius: 12px;
+}
+
+.energy {
+  color: #FF392e;
+  display: inline;
+}
+
+.protein {
+  color: #fdfd83;
+  display: inline;
+}
+
+.fat {
+  color: #FFBBFF;
+  display: inline;
+}
+
+.carbs {
+  color: #FFBB52;
+  display: inline;
+}
+
+.energy2 {
+  color: #FF392e;
+  display: flex;
+  text-align: center;
+  padding: 10px;
+}
+
+.protein2 {
+  color: #fdfd83;
+  display: flex;
+  text-align: center;
+  padding: 10px;
+}
+
+.fat2 {
+  color: #FFBBFF;
+  display: flex;
+  text-align: center;
+  padding: 10px;
+}
+
+.carbs2 {
+  color: #FFBB52;
+  display: flex;
+  text-align: center;
+  padding: 10px;
+}
+
+.cost {
+  display: flex;
+  text-align: center;
+  padding: 10px;
+}
+
+.logo {
+  width: 120px;
+  height: 120px;
 }
