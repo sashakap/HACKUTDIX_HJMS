@@ -84,15 +84,22 @@ function App() {
       <header className="App-header">
          <div className='categories'>
             <div className ="searchSection">
-              <h1>What are you in the mood for?</h1>
-              <form>
-                <input value={input} onChange={e=>setInput(e.target.value)} />
-              </form>
+              <div className="header"><h1>What are you in the mood for?</h1></div>
+              <div className="header"><input className="searchbar" value={input} onChange={e=>setInput(e.target.value)} /></div>
+              <br></br>
               <div className='selection'>
                 <ul>{
                 items.map(item => <p className="item">
-                  Name: {item.name}, Energy: {item.energy}, <button className="button" onClick={() =>addToCart(item)}>+</button>
-                  </p>
+                <p className="itemText"> {item.name} 
+                <p className="macro"> 
+                Cal (kcal): {item.energy} &emsp; 
+                Protein (g): {item.protein} &emsp; 
+                Fat (g): {item.fat} &emsp; 
+                Carbs (g): {item.carbohydrate}</p> 
+                ${item.cost}
+                <div className="buttonJustify"><button className="button" onClick={() =>addToCart(item)}>+</button></div>
+                </p>
+                </p>
                   )
                 }</ul>
               </div>
@@ -100,18 +107,29 @@ function App() {
           </div>
           <div className="Calculator">
            <div className="Cart">
-           <p>
+           <p className="totals">
+              Total Cal (kcal): {aggregateList(cart, true)[0][0]}
               <br></br>
-              {aggregateList(cart, true)[1]}
+              Total Protein (g): {aggregateList(cart, true)[0][1]}
               <br></br>
+              Total Fat (g): {aggregateList(cart, true)[0][3]}
+              <br></br>
+              Total Carbs (g): {aggregateList(cart, true)[0][2]}
+              <br></br>
+              Total Cost: {aggregateList(cart, true)[0][4]}
             </p>
-            <p><button className="export" onClick={() => exportCart()}>Export Shopping List</button></p>
-            <CalculatorLabel/>
+            <p className="totals"><button className="export" onClick={() => exportCart()}>Export Shopping List</button></p>
+            <div className="shoppingList"><h2>Shopping List</h2></div>
             <div className='cartModifiable'>
               <ul>{
-                  cart.map(cartItem => <p>
-                    Name: {cartItem[0].name}, Energy: {cartItem[0].energy}, Count: {cartItem[1] } <button className="button" onClick={() => removeFromCart(cartItem[0])}>-</button>
-                    </p>
+                  cart.map(cartItem => <p className="item2">
+                  <p className="itemText">
+                    {cartItem[0].name} &emsp; 
+                    ${cartItem[0].cost}/serving &emsp; 
+                    Count: {cartItem[1] } 
+                    <div className="buttonJustify"><button className="button" onClick={() => removeFromCart(cartItem[0])}>-</button></div>
+                  </p>
+                  </p>
                     )
                   }</ul>
               </div>
