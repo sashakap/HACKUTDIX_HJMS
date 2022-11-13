@@ -123,7 +123,7 @@ function App() {
             <div className='cartModifiable'>
               <ul>{
                   cart.map(cartItem => <p className="item2">
-                  <p className="itemText">
+                  <p className="itemText" title={getItemStats(cartItem[0])}>
                     {cartItem[0].name} &emsp; 
                     ${cartItem[0].cost}/serving &emsp; 
                     Count: {cartItem[1] } 
