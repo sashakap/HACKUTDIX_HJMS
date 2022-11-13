@@ -3,7 +3,7 @@
 }
 
 .selection{
-  height:27rem;
+  height:26rem;
   overflow-y:scroll;
 }
 
@@ -13,7 +13,7 @@
 }
 
 .cartModifiable{
-  height:22rem;
+  height:17rem;
   overflow-y:scroll;
 }
 
@@ -134,4 +134,63 @@ h1{
   width: 600px;
   height: 30px;
   border-radius: 12px;
+}
+
+.energy {
+  color: #FF392e;
+  display: inline;
+}
+
+.protein {
+  color: #fdfd83;
+  display: inline;
+}
+
+.fat {
+  color: #FFBBFF;
+  display: inline;
+}
+
+.carbs {
+  color: #FFBB52;
+  display: inline;
+}
+
+.energy2 {
+  color: #FF392e;
+  display: flex;
+  text-align: center;
+  padding: 10px;
+}
+
+.protein2 {
+  color: #fdfd83;
+  display: flex;
+  text-align: center;
+  padding: 10px;
+}
+
+.fat2 {
+  color: #FFBBFF;
+  display: flex;
+  text-align: center;
+  padding: 10px;
+}
+
+.carbs2 {
+  color: #FFBB52;
+  display: flex;
+  text-align: center;
+  padding: 10px;
+}
+
+.cost {
+  display: flex;
+  text-align: center;
+  padding: 10px;
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
 }

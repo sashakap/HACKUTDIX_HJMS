@@ -6,6 +6,7 @@ import { collection, onSnapshot, query, orderBy, where, increment } from 'fireba
 
 import {cleanQuery} from './InputCleaner';
 import {aggregateList} from './Aggregator';
+import logo from './TemocEatsLogo.png'
 
 function App() {
   const [items, setItems] = useState([]);
@@ -84,6 +85,8 @@ function App() {
       <header className="App-header">
          <div className='categories'>
             <div className ="searchSection">
+            <br></br>
+            <div className="header"><img className="logo" src={logo} alt="Logo"/></div>
               <div className="header"><h1>What are you in the mood for?</h1></div>
               <div className="header"><input className="searchbar" value={input} onChange={e=>setInput(e.target.value)} /></div>
               <br></br>
@@ -92,10 +95,10 @@ function App() {
                 items.map(item => <p className="item">
                 <p className="itemText"> {item.name} 
                 <p className="macro"> 
-                Cal (kcal): {item.energy} &emsp; 
-                Protein (g): {item.protein} &emsp; 
-                Fat (g): {item.fat} &emsp; 
-                Carbs (g): {item.carbohydrate}</p> 
+                <div className="energy">Cal: {item.energy} kcal &emsp;</div>
+                <div className="protein">Protein: {item.protein} g &emsp; </div>
+                <div className="fat">Fat: {item.fat} g &emsp; </div>
+                <div className="carbs">Carbs: {item.carbohydrate} g</div></p>
                 ${item.cost}
                 <div className="buttonJustify"><button className="button" onClick={() =>addToCart(item)}>+</button></div>
                 </p>
@@ -107,16 +110,13 @@ function App() {
           </div>
           <div className="Calculator">
            <div className="Cart">
+           <div className="shoppingList"><h2>Totals</h2></div>
            <p className="totals">
-              Total Cal (kcal): {aggregateList(cart, true)[0][0]}
-              <br></br>
-              Total Protein (g): {aggregateList(cart, true)[0][1]}
-              <br></br>
-              Total Fat (g): {aggregateList(cart, true)[0][3]}
-              <br></br>
-              Total Carbs (g): {aggregateList(cart, true)[0][2]}
-              <br></br>
-              Total Cost: {aggregateList(cart, true)[0][4]}
+              <p className="energy2"> Cal:<br></br>{aggregateList(cart, true)[0][0]} kcal</p>
+              <p className="protein2"> Protein:<br></br>{aggregateList(cart, true)[0][1]} g</p>
+              <p className="fat2"> Fat:<br></br>{aggregateList(cart, true)[0][3]} g</p>
+              <p className="carbs2"> Carbs:<br></br>{aggregateList(cart, true)[0][2]} g</p>
+              <p className="cost">Cost:<br></br>${aggregateList(cart, true)[0][4]}</p>
             </p>
             <p className="totals"><button className="export" onClick={() => exportCart()}>Export Shopping List</button></p>
             <div className="shoppingList"><h2>Shopping List</h2></div>
